@@ -1,6 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Typography } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, TextField, Typography } from '@material-ui/core'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { selectors } from '../../features/plant'
+import { actionTypes, selectors } from '../../features/plant'
 import { selectors as tokenSelector } from '../../features/token'
 import { RowItems } from './types'
 import { useStyles } from './styles'
@@ -50,10 +50,35 @@ function sortByTime(a: Plant, b: Plant) {
 
 const PlantsTable: React.FC = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+  const [authorization, setAuthorization] = React.useState('')
   const plants = useSelector(selectors.getPlants)
   const totalPlants = useSelector(selectors.getTotalPlants)
   const token = useSelector(tokenSelector.getToken)
   const rows: RowItems[] = []
+
+  const onChangeAuthorization = async () => {
+    if (authorization === '') {
+      return
+    }
+    const resp = await fetch(
+      'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=1',
+      {
+        headers: {
+          Authorization: authorization,
+        },
+      }
+    )
+
+    const result = await resp.json()
+    if (result.data.length > 0) {
+      dispatch({
+        type: actionTypes.SET_PLANTS,
+        payload: result,
+      })
+    }
+  }
+
   plants.sort(sortByTime).forEach((plant) => {
     const leHour = plant.config.farm.le / plant.config.farm.hours
     const leDay = leHour * 24
@@ -78,6 +103,18 @@ const PlantsTable: React.FC = () => {
   return (
     <>
       <br />
+      <div className={classes.input}>
+        <TextField
+          id="bear-token"
+          label="Bear Token"
+          onBlur={(e) => setAuthorization(e.target.value)}
+          fullWidth
+          helperText="Only use Bear Token if you know what are you doing!"
+        />
+        <Button onClick={onChangeAuthorization} variant="contained">
+          Search
+        </Button>
+      </div>
       <Typography variant="h4">Total Plants: {totalPlants}</Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
