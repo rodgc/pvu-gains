@@ -77,7 +77,8 @@ const PlantsTable: React.FC = () => {
 
   return (
     <>
-      <Typography variant="h6">Total Plants: {totalPlants}</Typography>
+      <br />
+      <Typography variant="h4">Total Plants: {totalPlants}</Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -110,7 +111,7 @@ const PlantsTable: React.FC = () => {
                 <TableCell align="right">{row.le}</TableCell>
                 <TableCell align="right">{row.hour}</TableCell>
                 <TableCell align="right">{row.cost}</TableCell>
-                <TableCell align="right">{row.costUSD.toFixed(2)}</TableCell>
+                <TableCell align="right">${row.costUSD.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leHour.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leDay.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leMonth.toFixed(2)}</TableCell>

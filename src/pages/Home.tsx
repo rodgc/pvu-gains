@@ -11,7 +11,6 @@ export const Home: React.FC = () => {
         'https://api.pancakeswap.info/api/v2/tokens/0x31471e0791fcdbe82fbf4c44943255e923f1b794'
       )
       const token = await response.json()
-      console.log('Token Home', token.data)
       dispatch({ type: actionTypes.SET_TOKEN, payload: token.data })
     }
     getTokenPrice()

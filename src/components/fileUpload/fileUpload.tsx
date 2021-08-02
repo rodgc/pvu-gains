@@ -5,27 +5,21 @@ import { actionTypes } from '../../features/plant'
 
 const FileUpload: React.FC = () => {
   const dispatch = useDispatch()
-  //   const handleChange = (e: any) => {
-  //     const fileReader = new FileReader()
-  //     fileReader.readAsText(e.target.files[0], 'UTF-8')
-  //     fileReader.onload = (_e) => {
-  //       dispatch({
-  //         type: actionTypes.SET_PLANTS,
-  //         payload: JSON.parse(_e?.target?.result),
-  //       })
-  //     }
-  //   }
 
   const readFileOnUpload = (e: any) => {
-    const fileReader = new FileReader()
-    fileReader.onloadend = () => {
-      const toParse = fileReader.result as string
-      dispatch({
-        type: actionTypes.SET_PLANTS,
-        payload: JSON.parse(toParse),
-      })
+    try {
+      const fileReader = new FileReader()
+      fileReader.onloadend = () => {
+        const toParse = fileReader.result as string
+        dispatch({
+          type: actionTypes.SET_PLANTS,
+          payload: JSON.parse(toParse),
+        })
+      }
+      fileReader.readAsText(e.target.files[0])
+    } catch (error) {
+      console.error(error)
     }
-    fileReader.readAsText(e.target.files[0])
   }
 
   return (
