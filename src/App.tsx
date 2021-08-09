@@ -30,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/about" component={About} />
           <Route path="/groups" component={Groups} />
           <Route path="/lands" component={Lands} />
+          <Route path="/owner/:ownerId" component={Lands} />
           <Route path="/plant-roi" component={PlantsTable} />
         </Switch>
       </div>
