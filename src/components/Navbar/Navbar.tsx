@@ -3,9 +3,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { useSelector } from 'react-redux'
-// import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useStyles } from './styles'
-import { FileUpload } from '../fileUpload'
+// import { FileUpload } from '../fileUpload'
 import { selectors } from '../../features/token'
 
 export const Navbar: React.FC = () => {
@@ -19,7 +19,8 @@ export const Navbar: React.FC = () => {
             <Typography variant="h6" className={classes.title}>
               PVU ${Number(token.price).toFixed(2)}
             </Typography>
-            <FileUpload />
+            <NavLink to="/plant-roi">Plants ROI</NavLink>
+            {/* <FileUpload /> */}
           </Toolbar>
         </AppBar>
       </div>
