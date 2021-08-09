@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar'
 import { PlantsTable } from './components/plantsTable'
 import { About } from './pages/About'
 import { Lands } from './pages/Lands'
+import { Groups } from './pages/Groups'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/" component={PlantsTable} exact />
           <Route path="/about" component={About} />
+          <Route path="/groups" component={Groups} />
           <Route path="/lands" component={Lands} />
           <Route path="/plant-roi" component={PlantsTable} />
         </Switch>

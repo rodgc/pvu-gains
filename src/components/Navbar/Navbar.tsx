@@ -13,6 +13,9 @@ export const Navbar: React.FC = () => {
         </NavLink>
         <ul className="right hide-on-med-and-down">
           <li cy-data="home-nav-link">
+            <NavLink to="/groups">Groups</NavLink>
+          </li>
+          <li cy-data="home-nav-link">
             <NavLink to="/lands">Lands</NavLink>
           </li>
           <li>
