@@ -5,6 +5,7 @@ import { actionTypes } from './features/token'
 import { Navbar } from './components/Navbar'
 import { PlantsTable } from './components/plantsTable'
 import { About } from './pages/About'
+import { Lands } from './pages/Lands'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/" component={PlantsTable} exact />
           <Route path="/about" component={About} />
+          <Route path="/lands" component={Lands} />
           <Route path="/plant-roi" component={PlantsTable} />
         </Switch>
       </div>
