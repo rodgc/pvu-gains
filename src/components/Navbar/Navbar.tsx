@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { useStyles } from './styles'
-// import { FileUpload } from '../fileUpload'
 import { selectors } from '../../features/token'
 
 export const Navbar: React.FC = () => {
@@ -20,7 +19,6 @@ export const Navbar: React.FC = () => {
               PVU ${Number(token.price).toFixed(2)}
             </Typography>
             <NavLink to="/plant-roi">Plants ROI</NavLink>
-            {/* <FileUpload /> */}
           </Toolbar>
         </AppBar>
       </div>
