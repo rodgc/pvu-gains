@@ -13,6 +13,7 @@ import { selectors as tokenSelector } from '../../features/token'
 import { RowItems } from './types'
 import { useStyles } from './styles'
 import { Plant } from '../../features/plant/types'
+import { usePVUToken } from '../../hooks'
 
 function createData({
   plantID,
@@ -55,17 +56,15 @@ const PlantsTable: React.FC = () => {
   const plants = useSelector(selectors.getPlants)
   const totalPlants = useSelector(selectors.getTotalPlants)
   const token = useSelector(tokenSelector.getToken)
+  const { pvuToken } = usePVUToken()
   const rows: RowItems[] = []
 
-  const onChangeAuthorization = async () => {
-    if (authorization === '') {
-      return
-    }
+  const getPlants = async () => {
     const resp = await fetch(
       'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=1',
       {
         headers: {
-          Authorization: authorization,
+          Authorization: pvuToken || authorization,
         },
       }
     )
@@ -78,6 +77,18 @@ const PlantsTable: React.FC = () => {
       })
     }
   }
+
+  const onChangeAuthorization = async () => {
+    if (authorization === '') {
+      return
+    }
+
+    getPlants()
+  }
+
+  React.useEffect(() => {
+    getPlants()
+  }, [])
 
   plants.sort(sortByTime).forEach((plant) => {
     const leHour = plant.config.farm.le / plant.config.farm.hours

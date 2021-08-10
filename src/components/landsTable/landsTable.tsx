@@ -2,10 +2,12 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import db from '../../firebase'
+import { usePVUToken } from '../../hooks'
 
 const LandsTable: React.FC = () => {
   const [lands, setLands] = React.useState<any[]>([])
   const [value, setValue] = React.useState<string>('')
+  const { pvuToken } = usePVUToken()
 
   const addLand = () => {
     if (!value) {
@@ -24,29 +26,31 @@ const LandsTable: React.FC = () => {
 
   return (
     <Fragment>
-      <div className="row">
-        <form className="col s12 center-align">
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                id="landId"
-                placeholder="Land ID"
-                type="text"
-                className="validate"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-              />
-              <button
-                type="button"
-                className="waves-effect waves-light btn-small"
-                onClick={addLand}
-              >
-                Add Land
-              </button>
+      {pvuToken && (
+        <div className="row">
+          <form className="col s12 center-align">
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  id="landId"
+                  placeholder="Land ID"
+                  type="text"
+                  className="validate"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="waves-effect waves-light btn-small"
+                  onClick={addLand}
+                >
+                  Add Land
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      )}
       <table className="highlight">
         <thead>
           <tr>
