@@ -8,6 +8,7 @@ import { About } from './pages/About'
 import { Lands } from './pages/Lands'
 import { Groups } from './pages/Groups'
 import { PlantsResetTable } from './components/plantsResetTable'
+import { PlantsResetTimeTable } from './components/plantsResetTimeTable'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/groups" component={Groups} />
           <Route path="/lands" component={Lands} />
           <Route path="/owner/:ownerId" component={PlantsResetTable} />
+          <Route path="/plants-reset" component={PlantsResetTimeTable} />
           <Route path="/plant-roi" component={PlantsTable} />
         </Switch>
       </div>

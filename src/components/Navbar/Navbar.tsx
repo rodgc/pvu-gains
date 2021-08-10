@@ -19,6 +19,9 @@ export const Navbar: React.FC = () => {
             <NavLink to="/lands">Lands</NavLink>
           </li>
           <li>
+            <NavLink to="/plants-reset">Plants Reset Time</NavLink>
+          </li>
+          <li>
             <NavLink to="/plant-roi">Plants ROI</NavLink>
           </li>
         </ul>
