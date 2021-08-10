@@ -4,19 +4,48 @@ import { NavLink } from 'react-router-dom'
 import db from '../../firebase'
 import { usePVUToken } from '../../hooks'
 
+interface Plant {
+  id: string
+  startTime: Date
+  land: { x: number; y: number }
+}
+
 const LandsTable: React.FC = () => {
   const [lands, setLands] = React.useState<any[]>([])
   const [value, setValue] = React.useState<string>('')
   const { pvuToken } = usePVUToken()
 
-  const addLand = () => {
+  const addLand = async () => {
     if (!value) {
       return
     }
 
-    db.collection('lands').doc(value).set({
-      plantId: '',
-      startTime: '',
+    const resp = await fetch(
+      `https://backend-farm.plantvsundead.com/farms/other/${value}?limit=20&offset=0`,
+      {
+        headers: {
+          Authorization: pvuToken!,
+        },
+      }
+    )
+
+    const result = await resp.json()
+
+    const docRef = await db.collection('lands').doc(value).get()
+
+    if (result.status === 444) {
+      return
+    }
+
+    if (!docRef.exists) {
+      db.collection('lands').doc(value).set({})
+    }
+
+    result.data.forEach((plant: Plant) => {
+      db.collection('lands')
+        .doc(value)
+        .collection('plants')
+        .add({ ...plant, startTime: new Date(plant.startTime) })
     })
   }
 

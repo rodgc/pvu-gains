@@ -37,7 +37,7 @@ const PlantsResetTable: React.FC = () => {
             <tr key={plant.id}>
               <td>{plant.id}</td>
               <td>
-                {plant.coordinates.x}, {plant.coordinates.y}
+                {plant.land.x}, {plant.land.y}
               </td>
               <td>{convertTime(plant.startTime)}</td>
             </tr>
