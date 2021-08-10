@@ -34,8 +34,8 @@ const PlantsResetTable: React.FC = () => {
 
         <tbody>
           {plants.map((plant) => (
-            <tr key={plant.id}>
-              <td>{plant.id}</td>
+            <tr key={plant.plantId}>
+              <td>{plant.plantId}</td>
               <td>
                 {plant.land.x}, {plant.land.y}
               </td>
