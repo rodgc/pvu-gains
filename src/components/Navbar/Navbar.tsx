@@ -13,13 +13,13 @@ export const Navbar: React.FC = () => {
         </NavLink>
         <ul className="right hide-on-med-and-down">
           <li cy-data="home-nav-link">
-            <NavLink to="/groups">Groups</NavLink>
+            {/* <NavLink to="/groups">Groups</NavLink> */}
           </li>
           <li cy-data="home-nav-link">
-            <NavLink to="/lands">Lands</NavLink>
+            {/* <NavLink to="/lands">Lands</NavLink> */}
           </li>
           <li>
-            <NavLink to="/plants-reset">Plants Reset Time</NavLink>
+            {/* <NavLink to="/plants-reset">Plants Reset Time</NavLink> */}
           </li>
           <li>
             <NavLink to="/plant-roi">Plants ROI</NavLink>

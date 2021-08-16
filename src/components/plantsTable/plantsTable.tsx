@@ -149,7 +149,7 @@ const PlantsTable: React.FC = () => {
                 <TableCell component="th" scope="row">
                   <a
                     target="_blank"
-                    href={`https://marketplace.plantvsundead.com/plant/${row.plantID}`}
+                    href={`https://marketplace.plantvsundead.com/#/plant/${row.plantID}`}
                     rel="noreferrer"
                   >
                     {row.plantID}

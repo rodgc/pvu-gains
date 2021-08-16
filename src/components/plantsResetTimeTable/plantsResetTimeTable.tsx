@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { Fragment } from 'react'
 import db from '../../firebase'
 
@@ -41,11 +42,19 @@ const PlantsResetTimeTable: React.FC = () => {
         <tbody>
           {plants.map((plant) => (
             <tr key={Math.random()}>
-              <td>{plant.plantId}</td>
+              <td>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://marketplace.plantvsundead.com/farm/${plant._id}`}
+                >
+                  {plant.plantId}
+                </a>
+              </td>
               <td>
                 {plant.land.x}, {plant.land.y}
               </td>
-              <td>{convertTime(plant.startTime)}</td>
+              <td>-{convertTime(plant.startTime)}</td>
             </tr>
           ))}
         </tbody>
