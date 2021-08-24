@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Container } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { actionTypes } from './features/token'
 import { Navbar } from './components/Navbar'
@@ -26,7 +27,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="container">
+      <Container>
         <Switch>
           <Route path="/" component={PlantsTable} exact />
           <Route path="/about" component={About} />
@@ -36,7 +37,7 @@ const App: React.FC = () => {
           <Route path="/plants-reset" component={PlantsResetTimeTable} />
           <Route path="/plant-roi" component={PlantsTable} />
         </Switch>
-      </div>
+      </Container>
     </BrowserRouter>
   )
 }
