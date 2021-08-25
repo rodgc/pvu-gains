@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
         <Typography variant="h4" className={classes.title}>
           Plants vs Undead Tools ${Number(token.price).toFixed(2)}
         </Typography>
-        <NavLink className={classes.links} to="/plant-roi">
+        <NavLink className={classes.links} to="/marketplace">
           Marketplace
         </NavLink>
       </Toolbar>

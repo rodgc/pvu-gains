@@ -4,12 +4,12 @@ import { Container } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { actionTypes } from './features/token'
 import { Navbar } from './components/Navbar'
-import { PlantsTable } from './components/plantsTable'
 import { About } from './pages/About'
 import { Lands } from './pages/Lands'
 import { Groups } from './pages/Groups'
 import { PlantsResetTable } from './components/plantsResetTable'
 import { PlantsResetTimeTable } from './components/plantsResetTimeTable'
+import { Marketplace } from './pages/Marketplace'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
@@ -29,13 +29,13 @@ const App: React.FC = () => {
       <Navbar />
       <Container>
         <Switch>
-          <Route path="/" component={PlantsTable} exact />
+          <Route path="/" component={Marketplace} exact />
           <Route path="/about" component={About} />
           <Route path="/groups" component={Groups} />
           <Route path="/lands" component={Lands} />
           <Route path="/owner/:ownerId" component={PlantsResetTable} />
           <Route path="/plants-reset" component={PlantsResetTimeTable} />
-          <Route path="/plant-roi" component={PlantsTable} />
+          <Route path="/marketplace" component={Marketplace} />
         </Switch>
       </Container>
     </BrowserRouter>

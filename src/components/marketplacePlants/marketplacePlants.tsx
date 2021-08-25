@@ -49,7 +49,7 @@ function sortByTime(a: Plant, b: Plant) {
   return aTime > bTime ? -1 : 1
 }
 
-const PlantsTable: React.FC = () => {
+const MarketplacePlants: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [authorization, setAuthorization] = React.useState('')
@@ -173,4 +173,4 @@ const PlantsTable: React.FC = () => {
   )
 }
 
-export default PlantsTable
+export default MarketplacePlants
