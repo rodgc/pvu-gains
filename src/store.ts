@@ -1,5 +1,6 @@
 import { combineReducers, createStore } from 'redux'
 import { devToolsEnhancer } from 'redux-devtools-extension'
+import accessTokenReducer from './features/accessToken/accessTokenReducer'
 import { PlantReducer } from './features/plant'
 import { TokenReducer } from './features/token'
 
@@ -7,6 +8,7 @@ import { TokenReducer } from './features/token'
 const rootReducer = combineReducers({
   plants: PlantReducer,
   token: TokenReducer,
+  accessToken: accessTokenReducer,
 })
 
 const store = createStore(

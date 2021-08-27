@@ -10,10 +10,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import { actionTypes, selectors } from '../../features/plant'
 import { selectors as tokenSelector } from '../../features/token'
-import {
-  selectors as accessTokenSelector,
-  actionTypes as accessTokenActionTypes,
-} from '../../features/accessToken'
+import { selectors as accessTokenSelector } from '../../features/accessToken'
 import { RowItems } from './types'
 import { useStyles } from './styles'
 import { Plant } from '../../features/plant/types'
@@ -52,19 +49,18 @@ function sortByTime(a: Plant, b: Plant) {
   return aTime > bTime ? -1 : 1
 }
 
-const MarketplacePlants: React.FC = () => {
+const MarketplaceMotherTree: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  // const [authorization, setAuthorization] = React.useState('')
   const plants = useSelector(selectors.getPlants)
   const totalPlants = useSelector(selectors.getTotalPlants)
-  const token = useSelector(tokenSelector.getToken)
   const pvuToken = useSelector(accessTokenSelector.getPVUToken)
+  const token = useSelector(tokenSelector.getToken)
   const rows: RowItems[] = []
 
   const getPlants = async () => {
     const resp = await fetch(
-      'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=1',
+      'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=2',
       {
         headers: {
           Authorization: pvuToken || '',
@@ -80,23 +76,6 @@ const MarketplacePlants: React.FC = () => {
       })
     }
   }
-
-  React.useEffect(() => {
-    const pvuStorage = window.localStorage.getItem('pvuToken')
-
-    if (!pvuStorage) {
-      // eslint-disable-next-line no-restricted-globals
-      // eslint-disable-next-line no-alert
-      const newToken = window.prompt('Token', '')
-      if (newToken) {
-        window.localStorage.setItem('pvuToken', newToken)
-        dispatch({
-          type: accessTokenActionTypes.SET_PVU_TOKEN,
-          payload: newToken,
-        })
-      }
-    }
-  }, [])
 
   React.useEffect(() => {
     getPlants()
@@ -126,7 +105,7 @@ const MarketplacePlants: React.FC = () => {
   return (
     <>
       <br />
-      <Typography variant="h4">Total Plants: {totalPlants}</Typography>
+      <Typography variant="h4">Total Mother Tree: {totalPlants}</Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -173,4 +152,4 @@ const MarketplacePlants: React.FC = () => {
   )
 }
 
-export default MarketplacePlants
+export default MarketplaceMotherTree
