@@ -62,6 +62,17 @@ const MarketplacePlants: React.FC = () => {
   const pvuToken = useSelector(accessTokenSelector.getPVUToken)
   const rows: RowItems[] = []
 
+  const setPVUToken = () => {
+    const newToken = window.prompt('Token', '')
+    if (newToken) {
+      window.localStorage.setItem('pvuToken', newToken)
+      dispatch({
+        type: accessTokenActionTypes.SET_PVU_TOKEN,
+        payload: newToken,
+      })
+    }
+  }
+
   const getPlants = async () => {
     const resp = await fetch(
       'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=1',
@@ -79,22 +90,18 @@ const MarketplacePlants: React.FC = () => {
         payload: result,
       })
     }
+
+    if (result.status === 1) {
+      window.localStorage.removeItem('pvuToken')
+      setPVUToken()
+    }
   }
 
   React.useEffect(() => {
     const pvuStorage = window.localStorage.getItem('pvuToken')
 
     if (!pvuStorage) {
-      // eslint-disable-next-line no-restricted-globals
-      // eslint-disable-next-line no-alert
-      const newToken = window.prompt('Token', '')
-      if (newToken) {
-        window.localStorage.setItem('pvuToken', newToken)
-        dispatch({
-          type: accessTokenActionTypes.SET_PVU_TOKEN,
-          payload: newToken,
-        })
-      }
+      setPVUToken()
     }
   }, [])
 
