@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Typography } from '@material-ui/core'
@@ -90,8 +91,6 @@ const MarketplacePlants: React.FC = () => {
         payload: result,
       })
     }
-
-    console.log(result.status)
 
     if (result.status === 1) {
       localStorage.removeItem('pvuToken')
