@@ -9,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Tooltip from '@material-ui/core/Tooltip'
 import { actionTypes, selectors } from '../../features/plant'
 import { selectors as tokenSelector } from '../../features/token'
 import {
@@ -140,7 +141,7 @@ const MarketplacePlants: React.FC = () => {
       <br />
       <Typography variant="h4">Total Plants: {totalPlants}</Typography>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table className={classes.table} size="small" aria-label="plants table">
           <TableHead>
             <TableRow>
               <TableCell>Plant ID</TableCell>
@@ -152,7 +153,12 @@ const MarketplacePlants: React.FC = () => {
               <TableCell align="right">LE x Hour</TableCell>
               <TableCell align="right">LE x Day</TableCell>
               <TableCell align="right">LE x Month</TableCell>
-              <TableCell align="right">PVU x Month</TableCell>
+              <Tooltip
+                placement="top"
+                title={`${PVU_EXCHANGE_RATE} LE = 1 PVU`}
+              >
+                <TableCell align="right">PVU x Month</TableCell>
+              </Tooltip>
               <TableCell align="right">ROI x Month</TableCell>
             </TableRow>
           </TableHead>
@@ -171,12 +177,16 @@ const MarketplacePlants: React.FC = () => {
                 <TableCell align="left">{row.type}</TableCell>
                 <TableCell align="right">{row.le}</TableCell>
                 <TableCell align="right">{row.hour}</TableCell>
-                <TableCell align="right">{row.cost}</TableCell>
+                <TableCell align="right" className={classes.plantPrice}>
+                  {row.cost}
+                </TableCell>
                 <TableCell align="right">${row.costUSD.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leHour.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leDay.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leMonth.toFixed(2)}</TableCell>
-                <TableCell align="right">{row.pvuMonth.toFixed(2)}</TableCell>
+                <TableCell align="right" className={classes.plantPrice}>
+                  {row.pvuMonth.toFixed(2)}
+                </TableCell>
                 <TableCell align="right">{row.time.toFixed(2)}%</TableCell>
               </TableRow>
             ))}
