@@ -41,8 +41,12 @@ function TabPanel(props: TabPanelProps) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginTop: '15px',
+    marginBottom: '15px',
     backgroundColor: theme.palette.background.paper,
+    borderRadius: '10px',
     width: '100%',
+    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
   },
 }))
 

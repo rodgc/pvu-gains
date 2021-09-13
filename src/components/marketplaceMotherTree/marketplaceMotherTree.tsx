@@ -25,6 +25,7 @@ function createData({
   leHour,
   leDay,
   leMonth,
+  pvuMonth,
   time,
 }: RowItems) {
   return {
@@ -37,6 +38,7 @@ function createData({
     leHour,
     leDay,
     leMonth,
+    pvuMonth,
     time,
   }
 }
@@ -52,6 +54,7 @@ function sortByTime(a: Plant, b: Plant) {
 const MarketplaceMotherTree: React.FC = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const PVU_EXCHANGE_RATE = 150
   const plants = useSelector(selectors.getPlants)
   const totalPlants = useSelector(selectors.getTotalPlants)
   const pvuToken = useSelector(accessTokenSelector.getPVUToken)
@@ -85,7 +88,8 @@ const MarketplaceMotherTree: React.FC = () => {
     const leHour = plant.config.farm.le / plant.config.farm.hours
     const leDay = leHour * 24
     const leMonth = leDay * 30
-    const time = leMonth / plant.startingPrice
+    const pvuMonth = leMonth / PVU_EXCHANGE_RATE
+    const time = (pvuMonth * 100) / plant.startingPrice
     rows.push(
       createData({
         plantID: plant.id,
@@ -97,6 +101,7 @@ const MarketplaceMotherTree: React.FC = () => {
         leHour,
         leDay,
         leMonth,
+        pvuMonth,
         time,
       })
     )
@@ -119,6 +124,7 @@ const MarketplaceMotherTree: React.FC = () => {
               <TableCell align="right">LE x Hour</TableCell>
               <TableCell align="right">LE x Day</TableCell>
               <TableCell align="right">LE x Month</TableCell>
+              <TableCell align="right">PVU x Month</TableCell>
               <TableCell align="right">ROI x Month</TableCell>
             </TableRow>
           </TableHead>
@@ -142,6 +148,7 @@ const MarketplaceMotherTree: React.FC = () => {
                 <TableCell align="right">{row.leHour.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leDay.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.leMonth.toFixed(2)}</TableCell>
+                <TableCell align="right">{row.pvuMonth.toFixed(2)}</TableCell>
                 <TableCell align="right">{row.time.toFixed(2)}%</TableCell>
               </TableRow>
             ))}

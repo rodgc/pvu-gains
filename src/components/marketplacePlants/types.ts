@@ -8,5 +8,6 @@ export interface RowItems {
   leHour: number
   leDay: number
   leMonth: number
+  pvuMonth: number
   time: number
 }
