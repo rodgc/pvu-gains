@@ -140,7 +140,7 @@ const MarketplacePlants: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell>Plant ID</TableCell>
-              <TableCell align="right">Type</TableCell>
+              <TableCell>Type</TableCell>
               <TableCell align="right">LE</TableCell>
               <TableCell align="right">Hour</TableCell>
               <TableCell align="right">Cost</TableCell>
