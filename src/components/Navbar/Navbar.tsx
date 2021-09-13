@@ -3,7 +3,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { selectors } from '../../features/token'
-import { FileUpload } from '../fileUpload'
 import { useStyles } from './styles'
 
 export const Navbar: React.FC = () => {
@@ -18,7 +17,6 @@ export const Navbar: React.FC = () => {
         <NavLink className={classes.links} to="/marketplace">
           Marketplace
         </NavLink>
-        <FileUpload />
       </Toolbar>
     </AppBar>
   )
