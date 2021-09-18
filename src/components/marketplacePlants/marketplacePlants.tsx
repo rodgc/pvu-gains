@@ -94,11 +94,6 @@ const MarketplacePlants: React.FC = () => {
         payload: result,
       })
     }
-
-    if (result.status === 1) {
-      localStorage.removeItem('pvuToken')
-      setPVUToken()
-    }
   }
 
   React.useEffect(() => {
