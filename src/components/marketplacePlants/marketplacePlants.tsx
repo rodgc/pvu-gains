@@ -79,7 +79,7 @@ const MarketplacePlants: React.FC = () => {
 
   const getPlants = async () => {
     const resp = await fetch(
-      'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=1000&type=1',
+      'https://backend-farm.plantvsundead.com/get-plants-filter-v2?offset=0&limit=5000&type=1',
       {
         headers: {
           Authorization: pvuToken || '',
